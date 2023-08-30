@@ -1,0 +1,9 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: TLSStore
+metadata:
+  name: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  defaultCertificate:
+    secretName: tls-secret

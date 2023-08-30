@@ -1,0 +1,14 @@
+name: test # name of the cluster
+domain: localdev.me # domain name for ingress
+servers: 1 # number of k8 server nodes for this cluster
+agents:  2 # number of k8 agent nodes for this cluster
+ports: [80, 443, 32500] # server ports the cluster will be configured for ingress 
+# include: # list of names from the abvaiable charts to install. All will be deployed if empty
+# - "postgres"
+# charts: # add custom charts here
+# - stage: app
+#   namespace: appNS
+#   chart: custom/repo
+#   repoName: custom
+#   repoURL: https://myco.com/repo
+#   version: ^0.0.1

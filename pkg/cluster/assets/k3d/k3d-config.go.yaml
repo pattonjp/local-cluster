@@ -1,0 +1,29 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+servers: {{.ServerCount}}
+agents: {{.AgentCount}}
+options:
+  k3d:
+    disableImageVolume: false
+    disableLoadbalancer: false
+    disableRollback: true
+    timeout: 60000000000
+    wait: true
+  k3s:
+    extraArgs:
+    - arg: --disable=traefik
+      nodeFilters:
+      - server:*
+    nodeLabels:
+    - label: type=server
+      nodeFilters:
+      - server:*
+  kubeconfig:
+    switchCurrentContext: true
+    updateDefaultKubeconfig: true
+ports:
+{{- range .ServerPorts }}
+- nodeFilters:
+  - server:*
+  port: {{.}}:{{.}}
+{{- end }}

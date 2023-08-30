@@ -1,0 +1,56 @@
+ - name: kube-prometheus-stack
+   stage: initial 
+   namespace: monitor
+   label: 
+    - monitoring
+   chart: prometheus-community/kube-prometheus-stack
+   repoName: prometheus-community
+   repoURL: https://prometheus-community.github.io/helm-charts
+   version: ^48.0.0
+ - name: loki
+   stage: base
+   namespace: monitor
+   label: 
+   - monitoring
+   chart: loki/loki
+   repoName: loki
+   repoURL: https://grafana.github.io/helm-charts
+   version: ^5.14.1
+ - name: promtail
+   stage: base
+   namespace: monitor
+   label: 
+   - monitoring
+   chart: grafana/promtail
+   repoName: grafana
+   repoURL: https://grafana.github.io/helm-charts
+   version: ^6.14.1
+ - name: localstack
+   stage: base
+   namespace: operations
+   label: []
+   chart: localstack/localstack
+   repoName: localstack
+   repoURL: https://localstack.github.io/helm-charts
+   version: ^0.6.1
+ - name: postgres
+   stage: base
+   namespace: data
+   label: 
+   - data
+   - pg
+   - postgres
+   chart: bitnami/postgresql
+   repoName: bitnami
+   repoURL: https://charts.bitnami.com/bitnami
+   version: ^12.8.3
+ - name: traefik
+   stage: base
+   namespace: operations
+   label: 
+   - ingress
+   chart: traefik/traefik
+   repoName: traefik
+   repoURL: https://traefik.github.io/charts
+   createCerts: true
+   version: ^24.0.0

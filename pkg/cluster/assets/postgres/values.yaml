@@ -1,0 +1,17 @@
+
+fullnameOverride: pgdb
+auth:
+  postgresPassword: admin
+  enablePostgresUser: true
+readReplicas:
+  replicaCount: 0
+primary:
+  extendedConfiguration: |
+    max_connections=250
+    listen_addresses='*'
+  persistence:
+    size: 50Gi
+  service:
+    type: NodePort
+    nodePorts:
+      postgresql: 32500

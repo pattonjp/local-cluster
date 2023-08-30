@@ -1,0 +1,43 @@
+grafana:
+  adminPassword: admin
+  ingress:
+    enabled: true
+    hosts:
+    - grafana.{{.Domain}}
+  additionalDataSources: 
+  - name: Loki
+    jsonData:
+      tlsSkipVerify: true
+      httpHeaderName1: 'X-Scope-OrgID'
+    secureJsonData:
+        httpHeaderValue1: '1'
+    type: loki
+    uid: loki
+    access: proxy
+    url: http://loki-gateway.monitor.svc.cluster.local
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+      - name: 'default'
+        orgId: 1
+        folder: ''
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/default
+  dashboards:
+    default:
+      traefik: 
+        gnetId: 11462
+        datasource: Prometheus
+        
+prometheus:
+  ingress:
+    enabled: true
+    hosts:
+    - prometheus.{{.Domain}}
+  prometheusSpec:
+    podMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
