@@ -1,4 +1,4 @@
-module mutterio/localdev
+module github.com/pattonjp/localcluster
 
 go 1.20
 

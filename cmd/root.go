@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"mutterio/localdev/pkg/cluster"
-	"mutterio/localdev/pkg/utils"
+	"github.com/pattonjp/localcluster/pkg/cluster"
+	"github.com/pattonjp/localcluster/pkg/utils"
 
 	"github.com/spf13/cobra"
 )

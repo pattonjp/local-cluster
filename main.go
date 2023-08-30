@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"mutterio/localdev/cmd"
 	"os"
+
+	"github.com/pattonjp/localcluster/cmd"
 )
 
 func main() {

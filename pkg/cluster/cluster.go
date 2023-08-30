@@ -1,7 +1,7 @@
 package cluster
 
 import (
-	"mutterio/localdev/pkg/utils"
+	"github.com/pattonjp/localcluster/pkg/utils"
 )
 
 func List(streamOut bool) error {
