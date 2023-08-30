@@ -102,7 +102,7 @@ func updateCheck() bool {
 	v, _ := semver.Parse(currBuild.Version)
 
 	if !found || latest.Version.LTE(v) {
-		fmt.Println("Current version is the latest")
+		// fmt.Println("Current version is the latest")
 		return false
 	}
 

@@ -5,9 +5,25 @@ early attempt at migrating bash scripts into an executable. this was created for
 the purpose of the binary is to wrap k3d, kubectl, and helm to quickly create a kubernetes dev cluster with ingress, monitoring, logging, and a postgres database ready for development. 
 
 
+### installation 
+```shell 
+> go install github.com/pattonjp/localcluster
+# add completions to your shell (zsh is what is shown below.)
+> source <(localcluster completion zsh)
+
+# help is available on all commands as well
+```
+
+### updates 
+to opt in for self updating of the binary run the following command:
+```shel
+localcluster version update
+```
+as new versions are released the application will begin to prompt you to self update when a new version is released. 
+
 ### quickstart 
-1. get dependencies installed. if you have asdf already installed just run the `bin/run deploy setup` command for additional dependencies. otherwise ensure the dependencies below are installed.
-2.  create the cluster `bin/run cluster create`
+1. get dependencies installed. if you have asdf already installed just run the `localcluster deploy setup` command for additional dependencies. otherwise ensure the dependencies below are installed.
+2.  create the cluster `localcluster cluster create`
 
 once the cluster is created you should now be able to access:
 
