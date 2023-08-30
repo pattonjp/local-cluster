@@ -9,7 +9,7 @@ tasks:
       - task --list-all 
   build:
     cmds: 
-    - go build -o dist/localcluster main.go
+    - go build -ldflags="-X 'main.version=0.0.0-pre'" -o dist/localcluster main.go
   build-release:
     cmds:
     - goreleaser release --snapshot --rm-dist

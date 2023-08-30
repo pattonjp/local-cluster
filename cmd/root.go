@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"fmt"
+
 	"github.com/pattonjp/localcluster/pkg/cluster"
 	"github.com/pattonjp/localcluster/pkg/utils"
 
@@ -8,15 +10,23 @@ import (
 )
 
 var (
-	rootCmd = &cobra.Command{
-		Use:          "localk8Dev",
-		Short:        "local k8 dev is a k3d helper to create a local development environment",
+	currBuild BuildInfo
+	rootCmd   = &cobra.Command{
+		Use:          "localcluster",
+		Short:        "this cli helps create local development environment in kubernetes",
 		SilenceUsage: true,
 	}
 	config cluster.Config
 )
 
-func Run() error {
+func Run(build BuildInfo) error {
+	currBuild = build
+	if build.Version != "dev" {
+		if updated := updateCheck(); updated {
+			fmt.Println("application updated please run again with the latest version")
+			return nil
+		}
+	}
 	var err error
 	config, err = cluster.GetConfig()
 	if err != nil {
@@ -25,5 +35,6 @@ func Run() error {
 	utils.MustCheckAllDeps()
 	rootCmd.AddCommand(k3dCommandRoot())
 	rootCmd.AddCommand(deployCommandRoot())
+	rootCmd.AddCommand(versionCmd())
 	return rootCmd.Execute()
 }
