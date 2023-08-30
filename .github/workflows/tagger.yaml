@@ -6,6 +6,9 @@ on:
       - main
       - "rc-*"
 
+permissions:
+  contents: write
+
 jobs:
   tagger:
     runs-on: ubuntu-latest
