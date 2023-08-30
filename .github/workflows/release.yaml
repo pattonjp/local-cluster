@@ -1,7 +1,6 @@
 name: goreleaser
 
 on:
-  create:
   push:
     tags:
       - "*"
@@ -11,7 +10,6 @@ permissions:
 
 jobs:
   goreleaser:
-    if: ${{ startsWith(github.ref, 'refs/tags/v') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
