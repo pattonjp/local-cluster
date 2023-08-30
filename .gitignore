@@ -1,3 +1,4 @@
 .localcluster
 certs
 tui
+dist/

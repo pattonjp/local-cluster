@@ -1,6 +1,7 @@
-k3d 5.6.0
-golang 1.21.0
-helm 3.12.2
-kubectl 1.26.7
-mkcert 1.4.4
+k3d           5.6.0
+golang        1.21.0
+helm          3.12.2
+kubectl       1.26.7
+mkcert        1.4.4
 golangci-lint 1.54.2
+goreleaser    latest
