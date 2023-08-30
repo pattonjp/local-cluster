@@ -1,0 +1,23 @@
+# https://taskfile.dev
+
+version: '3'
+silent: true
+
+tasks:
+  default:
+    cmds:
+      - task --list-all 
+  build:
+    cmds: 
+    - go build -o dist/localcluster main.go
+  build-release:
+    cmds:
+    - goreleaser release --snapshot --rm-dist
+  test-build:
+    cmds:
+    - |
+      act  \
+      --platform ubuntu-latest=ghcr.io/catthehacker/ubuntu:act-latest \
+      --secret GITHUB_TOKEN=$GITHUB_TOKEN \
+      --insecure-secrets \
+      {{.CLI_ARGS}}

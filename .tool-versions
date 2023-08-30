@@ -5,3 +5,5 @@ kubectl       1.26.7
 mkcert        1.4.4
 golangci-lint 1.54.2
 goreleaser    latest
+task          latest
+act           latest
