@@ -4,23 +4,20 @@ import (
 	"fmt"
 
 	"github.com/pattonjp/localcluster/pkg/cluster"
+	"github.com/pattonjp/localcluster/pkg/utils"
 
 	"github.com/spf13/cobra"
 )
 
-func k3dCommandRoot() *cobra.Command {
-	cmd := &cobra.Command{
-		Use: "cluster",
-	}
-	cmd.AddCommand(list())
-	cmd.AddCommand(create())
-	cmd.AddCommand(recreate())
-	cmd.AddCommand(delete())
-	cmd.AddCommand(start())
-	cmd.AddCommand(stop())
-	cmd.AddCommand(use())
-	return cmd
-
+func init() {
+	rootCmd.AddCommand(list())
+	rootCmd.AddCommand(create())
+	rootCmd.AddCommand(recreate())
+	rootCmd.AddCommand(delete())
+	rootCmd.AddCommand(start())
+	rootCmd.AddCommand(stop())
+	rootCmd.AddCommand(use())
+	rootCmd.AddCommand(setup())
 }
 
 func list() *cobra.Command {
@@ -153,5 +150,22 @@ func recreate() *cobra.Command {
 		},
 	}
 	cmd.Flags().AddFlagSet(config.GetFlagSet())
+	return cmd
+}
+
+func setup() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "setup",
+		Short: "ensures the charts are available locally",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			if err := utils.InstallAllDeps(); err != nil {
+				return err
+			}
+			if err := cluster.Setup(true, config); err != nil {
+				return err
+			}
+			return nil
+		},
+	}
 	return cmd
 }

@@ -22,8 +22,8 @@ localcluster version update
 as new versions are released the application will begin to prompt you to self update when a new version is released. 
 
 ### quickstart 
-1. get dependencies installed. if you have asdf already installed just run the `localcluster deploy setup` command for additional dependencies. otherwise ensure the dependencies below are installed.
-2.  create the cluster `localcluster cluster create`
+1. get dependencies installed. if you have asdf already installed just run the `localcluster setup` command for additional dependencies. otherwise ensure the dependencies below are installed.
+2.  create the cluster `localcluster create`
 
 once the cluster is created you should now be able to access:
 

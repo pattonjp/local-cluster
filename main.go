@@ -5,21 +5,19 @@ import (
 	"os"
 
 	"github.com/pattonjp/localcluster/cmd"
+	"github.com/pattonjp/localcluster/pkg/updater"
 )
 
 var (
-	version = "dev"
+	version string
 	commit  = "none"
 	date    = "unknown"
 )
 
 func main() {
-	info := cmd.BuildInfo{
-		Version: version,
-		Commit:  commit,
-		Date:    date,
-	}
-	if err := cmd.Run(info); err != nil {
+	vMgr := updater.New(version, commit, date, "pattonjp/localcluster")
+
+	if err := cmd.Run(vMgr); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
