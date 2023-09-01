@@ -14,6 +14,12 @@ var (
 		Use:          "localcluster",
 		Short:        "manages local kubernetes development environment",
 		SilenceUsage: true,
+		PersistentPreRun: func(cmd *cobra.Command, args []string) {
+			if cmd.Parent().Name() == "completion" {
+				return
+			}
+			utils.MustCheckAllDeps()
+		},
 	}
 	config cluster.Config
 )
@@ -27,7 +33,7 @@ func Run(vMgr updater.VersionManager) error {
 	if err != nil {
 		return err
 	}
-	utils.MustCheckAllDeps()
+
 	rootCmd.AddCommand(deployCommandRoot())
 	rootCmd.AddCommand(versionCmd(vMgr))
 	return rootCmd.Execute()
